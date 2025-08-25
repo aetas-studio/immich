@@ -331,6 +331,26 @@ export class AssetJobRepository {
       .stream();
   }
 
+  @GenerateSql({ params: [DummyValue.UUID] })
+  getForDetectAnimalsJob(id: string) {
+    return this.db
+      .selectFrom('asset')
+      .select(['asset.id', 'asset.visibility'])
+      .$call(withExifInner)
+      .select((eb) => withFiles(eb, AssetFileType.Preview))
+      .where('asset.id', '=', id)
+      .executeTakeFirst();
+  }
+
+  @GenerateSql({ params: [], stream: true })
+  streamForDetectAnimalsJob(force?: boolean) {
+    return this.assetsWithPreviews()
+      .$if(!force, (qb) => qb.where('job_status.animalsRecognizedAt', 'is', null))
+      .select(['asset.id'])
+      .orderBy('asset.createdAt', 'desc')
+      .stream();
+  }
+
   @GenerateSql({ params: [], stream: true })
   streamForDetectFacesJob(force?: boolean) {
     return this.assetsWithPreviews()
