@@ -88,6 +88,13 @@ class DetectedFace(TypedDict):
 
 FacialRecognitionOutput = list[DetectedFace]
 
+class DetectedAnimal(TypedDict):
+    label: str
+    score: float
+
+AnimalRecognitionOutput = list[DetectedAnimal]
+
+
 
 class PipelineEntry(TypedDict):
     modelName: str
