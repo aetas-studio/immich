@@ -199,6 +199,7 @@ export class AssetRepository {
             {
               duplicatesDetectedAt: eb.ref('excluded.duplicatesDetectedAt'),
               facesRecognizedAt: eb.ref('excluded.facesRecognizedAt'),
+              animalsRecognizedAt: eb.ref('excluded.animalsRecognizedAt'),
               metadataExtractedAt: eb.ref('excluded.metadataExtractedAt'),
               previewAt: eb.ref('excluded.previewAt'),
               thumbnailAt: eb.ref('excluded.thumbnailAt'),
