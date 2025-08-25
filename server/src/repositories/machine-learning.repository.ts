@@ -14,6 +14,7 @@ export interface BoundingBox {
 export enum ModelTask {
   FACIAL_RECOGNITION = 'facial-recognition',
   SEARCH = 'clip',
+  ANIMAL_RECOGNITION = 'animal-recognition',
 }
 
 export enum ModelType {
@@ -54,6 +55,8 @@ export type FacialRecognitionResponse = { [ModelTask.FACIAL_RECOGNITION]: Face[]
 export type DetectedFaces = { faces: Face[] } & VisualResponse;
 export type MachineLearningRequest = ClipVisualRequest | ClipTextualRequest | FacialRecognitionRequest;
 export type TextEncodingOptions = ModelOptions & { language?: string };
+export type AnimalDetected = { label: string; score: number };
+export type AnimalRecognitionResponse = AnimalDetected[];
 
 @Injectable()
 export class MachineLearningRepository {
@@ -164,6 +167,30 @@ export class MachineLearningRepository {
       faces: response[ModelTask.FACIAL_RECOGNITION],
     };
   }
+
+  async detectAnimals(
+  urls: string[],
+  imagePath: string,
+  modelConfig: { modelName?: string; minScore?: number } | undefined,
+  ) {
+  const request = {
+    [ModelTask.ANIMAL_RECOGNITION]: {
+      [ModelType.RECOGNITION]: { modelName: modelConfig?.modelName ?? null, options: modelConfig ?? {} },
+    },
+  };
+
+  const response = await this.predict<{
+    imageHeight: number;
+    imageWidth: number;
+    [ModelTask.ANIMAL_RECOGNITION]: AnimalRecognitionResponse;
+  }>(urls, { imagePath }, request);
+
+  return {
+    imageHeight: response.imageHeight,
+    imageWidth: response.imageWidth,
+    animals: response[ModelTask.ANIMAL_RECOGNITION],
+  };
+}
 
   async encodeImage(urls: string[], imagePath: string, { modelName }: CLIPConfig) {
     const request = { [ModelTask.SEARCH]: { [ModelType.VISUAL]: { modelName } } };
