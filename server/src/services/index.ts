@@ -24,6 +24,7 @@ import { PartnerService } from 'src/services/partner.service';
 import { PersonService } from 'src/services/person.service';
 import { SearchService } from 'src/services/search.service';
 import { ServerService } from 'src/services/server.service';
+import { AnimalRecognitionService } from 'src/services/animal-recognition.service';
 import { SessionService } from 'src/services/session.service';
 import { SharedLinkService } from 'src/services/shared-link.service';
 import { SmartInfoService } from 'src/services/smart-info.service';
@@ -45,6 +46,7 @@ export const services = [
   ApiKeyService,
   ActivityService,
   AlbumService,
+  AnimalRecognitionService,
   ApiService,
   AssetMediaService,
   AssetService,
