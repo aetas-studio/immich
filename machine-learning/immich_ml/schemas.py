@@ -23,6 +23,8 @@ class BoundingBox(TypedDict):
 class ModelTask(StrEnum):
     FACIAL_RECOGNITION = "facial-recognition"
     SEARCH = "clip"
+    ANIMAL_RECOGNITION = "animal-recognition"
+
 
 
 class ModelType(StrEnum):
