@@ -106,6 +106,7 @@ export enum AssetJobName {
   REFRESH_METADATA = 'refresh-metadata',
   REGENERATE_THUMBNAIL = 'regenerate-thumbnail',
   TRANSCODE_VIDEO = 'transcode-video',
+  REFRESH_ANIMALS = 'refresh-animals',
 }
 
 export class AssetJobsDto extends AssetIdsDto {
