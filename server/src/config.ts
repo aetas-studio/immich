@@ -69,6 +69,11 @@ export interface SystemConfig {
       minFaces: number;
       maxDistance: number;
     };
+    animalRecognition: {
+      enabled: boolean;
+      modelName: string;
+      minScore: number;
+    };
   };
   map: {
     enabled: boolean;
@@ -241,6 +246,11 @@ export const defaults = Object.freeze<SystemConfig>({
       minScore: 0.7,
       maxDistance: 0.5,
       minFaces: 3,
+    },
+    animalRecognition: {
+      enabled: true,
+      modelName: 'yolov8_animal',
+      minScore: 0.6,
     },
   },
   map: {
