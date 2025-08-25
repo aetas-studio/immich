@@ -514,6 +514,8 @@ export enum JobName {
   AssetDeleteCheck = 'AssetDeleteCheck',
   AssetDetectFacesQueueAll = 'AssetDetectFacesQueueAll',
   AssetDetectFaces = 'AssetDetectFaces',
+  AssetDetectAnimals = 'AssetDetectAnimals',
+  AssetDetectAnimalsQueueAll = 'AssetDetectAnimalsQueueAll',
   AssetDetectDuplicatesQueueAll = 'AssetDetectDuplicatesQueueAll',
   AssetDetectDuplicates = 'AssetDetectDuplicates',
   AssetEncodeVideoQueueAll = 'AssetEncodeVideoQueueAll',
