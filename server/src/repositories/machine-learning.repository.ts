@@ -53,7 +53,22 @@ export interface Face {
 
 export type FacialRecognitionResponse = { [ModelTask.FACIAL_RECOGNITION]: Face[] } & VisualResponse;
 export type DetectedFaces = { faces: Face[] } & VisualResponse;
-export type MachineLearningRequest = ClipVisualRequest | ClipTextualRequest | FacialRecognitionRequest;
+export type AnimalRecognitionRequest = {
+  [ModelTask.ANIMAL_RECOGNITION]: {
+    [ModelType.RECOGNITION]: {
+      modelName: string | null;
+      options?: {
+        minScore?: number;
+        [k: string]: any;
+      };
+    };
+  };
+};
+export type MachineLearningRequest =
+  | ClipVisualRequest
+  | ClipTextualRequest
+  | FacialRecognitionRequest
+  | AnimalRecognitionRequest;
 export type TextEncodingOptions = ModelOptions & { language?: string };
 export type AnimalDetected = { label: string; score: number };
 export type AnimalRecognitionResponse = AnimalDetected[];
