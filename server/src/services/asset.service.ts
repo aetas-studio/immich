@@ -285,6 +285,11 @@ export class AssetService extends BaseService {
           break;
         }
 
+        case AssetJobName.REFRESH_ANIMALS: {
+          jobs.push({ name: JobName.AssetDetectAnimals, data: { id } });
+          break;
+        }
+
         case AssetJobName.REFRESH_METADATA: {
           jobs.push({ name: JobName.AssetExtractMetadata, data: { id } });
           break;
