@@ -54,7 +54,7 @@ export class AnimalRecognitionService extends BaseService {
    * upsert tags (Animals/<Label>) and attach tags to the asset.
    */
   @OnJob({ name: JobName.AssetDetectAnimals, queue: QueueName.SmartSearch })
-  @Chunked({ size: JOBS_ASSET_PAGINATION_SIZE })
+  @Chunked({ chunkSize: JOBS_ASSET_PAGINATION_SIZE })
   async processPage(page: number): Promise<JobStatus> {
     // Fetch a page of assets to process (reuse existing repository helper if present).
     // We use assetsWithPreviews stream pattern in queueAll; here we can fetch a page via an existing helper if available.
